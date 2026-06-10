@@ -9,7 +9,7 @@
 
 | Fichier | Description |
 |---------|-------------|
-| `OnePager_Commission_Formation_Talent_Tech.html` | Landing page complète (standalone — ouvrir dans un navigateur) |
+| `index.html` | Landing page complète (standalone — ouvrir dans un navigateur) |
 | `docs/presentation-commission-v1.pdf` | Présentation institutionnelle (téléchargeable depuis la page) |
 | `docs/dossier-presentation-v1.pdf` | Dossier de présentation synthétique |
 | `docs/livre-blanc-v1.docx` | Livre blanc complet |
@@ -83,11 +83,21 @@ const CONFIG = {
 
 ## Déploiement Vercel (prochaine étape — plan CEO 2026-06-10)
 
-1. Créer un repo GitHub, copier le contenu de ce dossier, renommer le HTML en `index.html`
+**Repo GitHub : https://github.com/Lemaaz/commission-formation-talent-apebi** ✅ (créé 2026-06-10, branche `main`)
+Ce dossier EST le repo — tout commit pushé sur `main` se déploiera automatiquement une fois Vercel connecté.
+
+1. ~~Créer un repo GitHub~~ ✅ Fait
 2. Connecter le repo à vercel.com → déploiement automatique
-3. Créer le formulaire Tally → renseigner `TALLY_FORM_ID` dans CONFIG
-4. Créer le groupe WhatsApp → renseigner `WHATSAPP_URL` dans CONFIG
+3. Créer le formulaire Tally → renseigner `TALLY_FORM_ID` dans CONFIG (puis commit + push)
+4. Créer le groupe WhatsApp → renseigner `WHATSAPP_URL` dans CONFIG (puis commit + push)
 5. Demander le sous-domaine `formation.apebi.org.ma` (décision Binôme B-06, non bloquant)
+
+```bash
+# Workflow de mise à jour :
+cd 06_OnePager
+# ... éditer index.html ...
+git add index.html && git commit -m "maj: ..." && git push
+```
 
 ---
 
