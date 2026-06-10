@@ -572,14 +572,15 @@
   <!-- ============================================================
        CONFIG — Variables à modifier ici (une seule fois)
        EMAIL_VP        : email de contact du VP commission
-       WHATSAPP_URL    : lien d'invitation groupe WhatsApp (laisser "" si pas encore créé)
+       WHATSAPP_URL    : contact WhatsApp direct du VP (wa.me + numéro international sans 0).
+                         Remplacer par le lien d'invitation chat.whatsapp.com/... quand le groupe sera créé.
        TALLY_FORM_ID   : ID du formulaire Tally (laisser "" tant que non créé → fallback email)
        LINKEDIN_VP     : profil LinkedIn du VP
        ============================================================ -->
   <script>
     const CONFIG = {
       EMAIL_VP: "o.mazouzi.pro@gmail.com",
-      WHATSAPP_URL: "",
+      WHATSAPP_URL: "https://wa.me/212642616300?text=" + encodeURIComponent("Bonjour, je vous contacte au sujet de la Commission Formation & Talent Tech APEBI."),
       TALLY_FORM_ID: "LZOQzy",
       LINKEDIN_VP: "https://www.linkedin.com/in/oualidmazouzi/"
     };
