@@ -83,7 +83,9 @@ const CONFIG = {
 
 ## Déploiement Vercel (prochaine étape — plan CEO 2026-06-10)
 
+**🌐 SITE EN LIGNE : https://commission-formation-talent-apebi.vercel.app** ✅ (déployé 2026-06-10)
 **Repo GitHub : https://github.com/Lemaaz/commission-formation-talent-apebi** ✅ (créé 2026-06-10, branche `main`)
+**Auto-deploy actif** : chaque push sur `main` redéploie automatiquement le site.
 Ce dossier EST le repo — tout commit pushé sur `main` se déploiera automatiquement une fois Vercel connecté.
 
 1. ~~Créer un repo GitHub~~ ✅ Fait
