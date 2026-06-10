@@ -1148,7 +1148,7 @@
         <a id="linkEmail" href="#">✉ Email</a>
         <a id="linkWhatsApp" href="#" style="display:none">WhatsApp</a>
         <a id="linkLinkedIn" href="#" target="_blank" rel="noopener">LinkedIn</a>
-        <a id="btnShare" href="#">Partager cette page</a>
+        <a id="btnShare" href="#" role="button">Partager cette page</a>
       </div>
       <div class="foot-bar">
         <div>© 2026 APEBI · Commission Formation &amp; Talent Tech · Document institutionnel</div>
@@ -1202,13 +1202,17 @@
         };
         if (navigator.share) {
           navigator.share(shareData).catch(function () {});
-        } else {
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(window.location.href).then(function () {
             const btn = document.getElementById("btnShare");
             const old = btn.textContent;
             btn.textContent = "Lien copié ✓";
             setTimeout(function () { btn.textContent = old; }, 2000);
+          }).catch(function () {
+            window.prompt("Copiez le lien :", window.location.href);
           });
+        } else {
+          window.prompt("Copiez le lien :", window.location.href);
         }
       });
     })();
