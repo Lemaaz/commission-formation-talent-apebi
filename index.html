@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Commission Formation & Talent Tech — APEBI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cyan: #00AFD2;
+    --cyan-d: #0096b4;
+    --ink: #202020;
+    --ink-2: #303030;
+    --navy: #3A4652;
+    --dark: #212121;
+    --muted: #545454;
+    --light: #797979;
+    --bg: #ffffff;
+    --bg-2: #F5F5F5;
+    --divider: #EAEAEA;
+    --wrap: 1080px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: 'Hind', sans-serif;
+    color: var(--ink-2);
+    background: var(--bg);
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+  }
+
+  p { margin: 0; }
+
+  a { color: var(--cyan-d); text-decoration: none; }
+
+  .wrap {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ---------- Scroll progress bar ---------- */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--cyan); z-index: 10000; transition: width 0.1s ease-out;
+  }
+
+  /* ---------- Sticky nav ---------- */
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 9000;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid var(--divider);
+    backdrop-filter: blur(6px);
+  }
+  .sticky-nav .nav-row {
+    max-width: var(--wrap); margin: 0 auto; padding: 0 40px;
+    display: flex; align-items: center; gap: 4px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .sticky-nav .nav-row::-webkit-scrollbar { display: none; }
+  .sticky-nav a {
+    font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--muted); padding: 13px 12px; white-space: nowrap;
+    border-bottom: 2.5px solid transparent;
+  }
+  .sticky-nav a:hover { color: var(--cyan-d); }
+  .sticky-nav a.cta-link { color: var(--cyan-d); font-weight: 600; }
+
+  /* ---------- Sticky CTA bar ---------- */
+  .sticky-cta-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 9500;
+    background: var(--dark); color: #fff;
+    display: none; align-items: center; justify-content: center; gap: 18px;
+    padding: 12px 20px;
+    box-shadow: 0 -4px 18px rgba(0,0,0,0.18);
+  }
+  .sticky-cta-bar.visible { display: flex; }
+  .sticky-cta-bar.hidden { display: none !important; }
+  .sticky-cta-bar p { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.92); }
+  .sticky-cta-bar a {
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13.5px;
+    background: var(--cyan); color: #fff; padding: 9px 20px; border-radius: 100px;
+    white-space: nowrap;
+  }
+  @media (max-width: 768px) { .sticky-cta-bar { display: none !important; } }
+
+  /* ---------- Annonces ---------- */
+  .annonce-card { display: grid; gap: 8px; }
+  .annonce-card .a-date {
+    font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600;
+    color: var(--cyan-d); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .annonce-card .a-tag {
+    display: inline-block; font-family: 'Poppins', sans-serif; font-size: 11.5px;
+    font-weight: 600; background: rgba(0,175,210,0.1); color: var(--cyan-d);
+    padding: 4px 11px; border-radius: 100px; width: fit-content;
+  }
+
+  /* ---------- Événements ---------- */
+  .event-card { display: grid; grid-template-columns: 78px 1fr; gap: 20px; align-items: start; }
+  .event-card .e-date {
+    background: var(--cyan); color: #fff; border-radius: 10px;
+    text-align: center; padding: 12px 6px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .event-card .e-date .d { font-size: 24px; font-weight: 700; line-height: 1; }
+  .event-card .e-date .m { font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+  .event-card .e-meta { font-size: 13.5px; color: var(--light); margin-top: 6px; }
+  .event-card .e-link {
+    display: inline-block; margin-top: 12px;
+    font-family: 'Poppins', sans-serif; font-size: 13.5px; font-weight: 600;
+    color: var(--cyan-d);
+  }
+
+  /* ---------- Profils recherchés ---------- */
+  .profil-card.confirmed { border-color: var(--cyan); border-width: 1.5px; }
+  .profil-card .p-status {
+    display: inline-block; font-family: 'Poppins', sans-serif; font-size: 11.5px;
+    font-weight: 600; padding: 4px 11px; border-radius: 100px; margin-bottom: 12px;
+  }
+  .profil-card .p-status.open { background: rgba(0,175,210,0.1); color: var(--cyan-d); }
+  .profil-card .p-status.taken { background: var(--navy); color: #fff; }
+  .profil-card .p-profile { font-size: 14px; color: var(--light); margin-top: 8px; }
+
+  /* ---------- Ressources ---------- */
+  .res-card { display: grid; grid-template-columns: 46px 1fr; gap: 18px; align-items: start; }
+  .res-card .r-icon {
+    width: 46px; height: 46px; border-radius: 10px;
+    background: rgba(0,175,210,0.1); color: var(--cyan-d);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px;
+  }
+  .res-card .r-dl {
+    display: inline-block; margin-top: 12px;
+    font-family: 'Poppins', sans-serif; font-size: 13.5px; font-weight: 600;
+    color: #fff; background: var(--cyan); padding: 8px 18px; border-radius: 100px;
+  }
+  .res-card .r-dl:hover { background: var(--cyan-d); }
+  .res-card .r-size { font-size: 12.5px; color: var(--light); margin-left: 10px; }
+
+  /* ---------- Footer connect ---------- */
+  .foot-connect {
+    margin-top: 30px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  }
+  .foot-connect .c-lbl {
+    font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5);
+    margin-right: 8px;
+  }
+  .foot-connect a {
+    font-family: 'Poppins', sans-serif; font-size: 13.5px; font-weight: 500;
+    color: #fff; border: 1px solid rgba(255,255,255,0.25);
+    padding: 9px 18px; border-radius: 100px;
+  }
+  .foot-connect a:hover { border-color: var(--cyan); color: var(--cyan); }
+
+  /* ---------- Masthead ---------- */
+  .masthead {
+    border-bottom: 1px solid var(--divider);
+    background: #fff;
+  }
+  .masthead .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px 40px;
+    max-width: var(--wrap);
+    margin: 0 auto;
+  }
+  .masthead img { height: 46px; width: auto; display: block; }
+  .masthead .meta {
+    text-align: right;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--light);
+    line-height: 1.5;
+  }
+  .masthead .meta strong { color: var(--navy); font-weight: 600; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: var(--cyan);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -120px;
+    top: -120px;
+    width: 420px;
+    height: 420px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .hero .wrap { padding-top: 64px; padding-bottom: 66px; position: relative; z-index: 1; }
+  .hero .eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    color: #fff;
+    font-weight: 700;
+    font-size: clamp(34px, 5vw, 54px);
+    max-width: 16ch;
+  }
+  .hero .lede {
+    margin-top: 22px;
+    font-size: clamp(18px, 2.1vw, 22px);
+    font-weight: 300;
+    line-height: 1.5;
+    max-width: 50ch;
+    color: rgba(255,255,255,0.96);
+  }
+  .hero .tagline {
+    display: inline-block;
+    margin-top: 30px;
+    background: rgba(0,0,0,0.16);
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 11px 20px;
+    border-radius: 100px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding: 64px 0; }
+  section.alt { background: var(--bg-2); }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+  .sec-num {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--cyan-d);
+    letter-spacing: 0.08em;
+    padding-top: 6px;
+    flex: 0 0 auto;
+  }
+  .sec-head h2 {
+    font-size: clamp(25px, 3.2vw, 33px);
+    font-weight: 600;
+  }
+  .sec-head .bar {
+    width: 40px; height: 4px; background: var(--cyan);
+    border-radius: 2px; margin-bottom: 14px;
+  }
+  .sec-intro {
+    max-width: 64ch;
+    color: var(--muted);
+    font-size: 18px;
+    margin-bottom: 38px;
+  }
+
+  /* ---------- Cards ---------- */
+  .grid { display: grid; gap: 22px; }
+  .g-3 { grid-template-columns: repeat(3, 1fr); }
+  .g-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--divider);
+    border-radius: 10px;
+    padding: 28px 26px;
+  }
+  section.alt .card { background: #fff; }
+  .card .idx {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--cyan-d);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .card h3 { font-size: 19px; font-weight: 600; margin-bottom: 10px; }
+  .card p { color: var(--muted); font-size: 16px; line-height: 1.58; }
+
+  /* ---------- Mission band ---------- */
+  .mission-quote {
+    border-left: 4px solid var(--cyan);
+    padding: 4px 0 4px 26px;
+    margin-bottom: 30px;
+  }
+  .mission-quote p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: clamp(20px, 2.6vw, 27px);
+    color: var(--ink);
+    line-height: 1.35;
+    max-width: 30ch;
+  }
+  .mission-quote .sub { font-family:'Hind',sans-serif; font-weight:400; font-size:17px; color:var(--muted); margin-top:14px; max-width:60ch; }
+
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 34px;
+    margin-top: 8px;
+  }
+  .checklist li {
+    list-style: none;
+    position: relative;
+    padding-left: 30px;
+    color: var(--ink-2);
+    font-size: 16.5px;
+    line-height: 1.45;
+  }
+  .checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 8px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: inset 0 0 0 4px #fff, 0 0 0 1.5px var(--cyan);
+  }
+  ul.checklist { padding: 0; margin: 0; }
+
+  /* ---------- Vision ---------- */
+  .vision {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 14px;
+    padding: 44px 46px;
+  }
+  .vision .v-label {
+    font-family: 'Poppins', sans-serif; font-size: 12.5px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 18px;
+  }
+  .vision .v-quote {
+    font-family: 'Poppins', sans-serif; font-weight: 500;
+    font-size: clamp(20px, 2.7vw, 28px); line-height: 1.35; color: #fff;
+    max-width: 26ch;
+  }
+  .ambitions {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+    margin-top: 38px; padding-top: 34px; border-top: 1px solid rgba(255,255,255,0.16);
+  }
+  .ambitions .amb-n {
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 30px;
+    color: var(--cyan); line-height: 1; margin-bottom: 12px;
+  }
+  .ambitions p { color: rgba(255,255,255,0.88); font-size: 16px; line-height: 1.5; }
+
+  /* ---------- Axes ---------- */
+  .axe {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 0;
+    background: #fff;
+    border: 1px solid var(--divider);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .axe .tab {
+    background: var(--cyan);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 26px;
+  }
+  .axe .body { padding: 24px 26px; }
+  .axe h3 { font-size: 19px; margin-bottom: 8px; }
+  .axe p { color: var(--muted); font-size: 16px; }
+  .axe .deliv {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px;
+  }
+  .axe .chip {
+    font-family: 'Poppins', sans-serif; font-size: 12.5px; font-weight: 500;
+    background: var(--bg-2); color: var(--navy); padding: 6px 13px; border-radius: 100px;
+  }
+  .axe .chip.hz { background: rgba(0,175,210,0.12); color: var(--cyan-d); }
+  .priority-note {
+    margin-top: 24px;
+    background: rgba(0,175,210,0.08);
+    border: 1px solid rgba(0,175,210,0.25);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 16px;
+    color: var(--ink-2);
+  }
+  .priority-note strong { color: var(--cyan-d); font-family: 'Poppins', sans-serif; font-weight: 600; }
+
+  /* ---------- Timeline (actions) ---------- */
+  .timeline { display: grid; gap: 0; counter-reset: tl; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-top: 1px solid var(--divider);
+    align-items: baseline;
+  }
+  .tl-item:last-child { border-bottom: 1px solid var(--divider); }
+  .tl-when {
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px;
+    color: var(--cyan-d); letter-spacing: 0.04em;
+  }
+  .tl-item h3 { font-size: 17.5px; font-weight: 600; margin-bottom: 4px; }
+  .tl-item p { color: var(--muted); font-size: 15.5px; }
+
+  /* ---------- Stakeholders ---------- */
+  .stake { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .stake .col h3 {
+    font-size: 15px; font-weight: 600; color: var(--navy);
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;
+    padding-bottom: 10px; border-bottom: 2px solid var(--cyan);
+  }
+  .stake ul { padding: 0; margin: 0; list-style: none; }
+  .stake li { font-size: 15.5px; color: var(--ink-2); padding: 4px 0; }
+  .partners {
+    margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--divider);
+  }
+  .partners .lbl {
+    font-family:'Poppins',sans-serif; font-size: 12.5px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); margin-bottom: 16px;
+  }
+  .partners .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .partners .pills span {
+    font-family:'Poppins',sans-serif; font-size: 14px; font-weight: 500;
+    border: 1px solid var(--divider); color: var(--navy);
+    padding: 8px 16px; border-radius: 6px; background: #fff;
+  }
+
+  /* ---------- KPI band ---------- */
+  .impact { background: var(--dark); color: #fff; }
+  .impact .sec-head h2 { color: #fff; }
+  .impact .sec-num { color: var(--cyan); }
+  .kpis {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+    margin: 12px 0 40px;
+  }
+  .kpi .num {
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: clamp(34px, 4.6vw, 50px); color: var(--cyan); line-height: 1;
+  }
+  .kpi .lab { color: rgba(255,255,255,0.8); font-size: 15px; margin-top: 10px; line-height: 1.4; }
+  .impact-list {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 40px;
+    padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.14);
+  }
+  .impact-list li {
+    list-style: none; position: relative; padding-left: 26px;
+    color: rgba(255,255,255,0.9); font-size: 16px; line-height: 1.45;
+  }
+  .impact-list li::before {
+    content: ""; position: absolute; left: 0; top: 9px;
+    width: 9px; height: 9px; background: var(--cyan); border-radius: 50%;
+  }
+  ul.impact-list { padding: 0; margin: 0; }
+
+  /* ---------- Governance ---------- */
+  .gov { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start; }
+  .gov .facts { display: grid; gap: 0; }
+  .gov .fact {
+    display: grid; grid-template-columns: 1fr auto; gap: 16px;
+    padding: 15px 0; border-top: 1px solid var(--divider); align-items: baseline;
+  }
+  .gov .fact:last-child { border-bottom: 1px solid var(--divider); }
+  .gov .fact .k { color: var(--muted); font-size: 16px; }
+  .gov .fact .v {
+    font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--ink);
+    font-size: 16px; text-align: right;
+  }
+  .gov .principles h3 { font-size: 18px; margin-bottom: 16px; }
+  .gov .principles ul { padding: 0; margin: 0; list-style: none; }
+  .gov .principles li {
+    position: relative; padding-left: 28px; margin-bottom: 14px;
+    font-size: 16px; color: var(--ink-2); line-height: 1.5;
+  }
+  .gov .principles li::before {
+    content: ""; position: absolute; left: 0; top: 7px; width: 14px; height: 14px;
+    border: 2px solid var(--cyan); border-radius: 3px;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta { background: var(--cyan); color: #fff; text-align: center; }
+  .cta .wrap { padding-top: 60px; padding-bottom: 60px; }
+  .cta h2 { color: #fff; font-size: clamp(26px, 3.4vw, 36px); max-width: 22ch; margin: 0 auto 20px; }
+  .cta p { max-width: 60ch; margin: 0 auto; font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.96); }
+  .cta .actions { margin-top: 32px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .cta .btn {
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px;
+    padding: 14px 28px; border-radius: 100px; cursor: pointer;
+  }
+  .cta .btn.solid { background: #fff; color: var(--cyan-d); }
+  .cta .btn.ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.6); }
+  .cta .annex-link {
+    display: inline-block; margin-top: 26px; color: rgba(255,255,255,0.9);
+    font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.45); padding-bottom: 2px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--dark); color: rgba(255,255,255,0.72); }
+  footer .wrap { padding-top: 46px; padding-bottom: 40px; }
+  .foot-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; flex-wrap: wrap; }
+  .foot-brand .name {
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 20px; color: #fff;
+  }
+  .foot-brand .fed { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 6px; max-width: 42ch; }
+  .foot-sign { text-align: right; }
+  .foot-sign .vp-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); font-family:'Poppins',sans-serif; font-weight: 600; }
+  .foot-sign .vp-name { font-family: 'Poppins', sans-serif; font-weight: 600; color: #fff; font-size: 18px; margin-top: 6px; }
+  .foot-sign .vp-meta { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+  .foot-bar {
+    margin-top: 32px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    font-size: 13px; color: rgba(255,255,255,0.5);
+  }
+  .foot-bar a { color: var(--cyan); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .g-3, .g-2, .stake, .ambitions, .kpis, .gov, .impact-list, .checklist { grid-template-columns: 1fr; }
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+    .wrap, .masthead .row { padding-left: 24px; padding-right: 24px; }
+    .vision { padding: 32px 26px; }
+    .foot-sign { text-align: left; }
+  }
+  @media (max-width: 520px) {
+    .kpis { grid-template-columns: 1fr; }
+    .masthead .meta { display: none; }
+    .tl-item { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  @media print {
+    .hero, .cta, .impact { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    section { padding: 34px 0; }
+    .sticky-nav, .sticky-cta-bar, .scroll-progress { display: none !important; }
+    .print-contact { display: block !important; }
+  }
+  .print-contact { display: none; font-size: 14px; margin-top: 16px; }
+</style>
+</head>
+<body>
+
+  <!-- ============================================================
+       CONFIG — Variables à modifier ici (une seule fois)
+       EMAIL_VP        : email de contact du VP commission
+       WHATSAPP_URL    : lien d'invitation groupe WhatsApp (laisser "" si pas encore créé)
+       TALLY_FORM_ID   : ID du formulaire Tally (laisser "" tant que non créé → fallback email)
+       LINKEDIN_VP     : profil LinkedIn du VP
+       ============================================================ -->
+  <script>
+    const CONFIG = {
+      EMAIL_VP: "o.mazouzi.pro@gmail.com",
+      WHATSAPP_URL: "",
+      TALLY_FORM_ID: "",
+      LINKEDIN_VP: "https://www.linkedin.com/in/oualidmazouzi/"
+    };
+  </script>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="row">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQQAAABkCAYAAABgi07kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjI3QTEyODhERkNCNTExRTlBQ0Y2RjhCNzBFQTNFMTM4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjI3QTEyODhFRkNCNTExRTlBQ0Y2RjhCNzBFQTNFMTM4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MjdBMTI4OEJGQ0I1MTFFOUFDRjZGOEI3MEVBM0UxMzgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MjdBMTI4OENGQ0I1MTFFOUFDRjZGOEI3MEVBM0UxMzgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5K2ClFAABEL0lEQVR42ux9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" alt="APEBI — Fédération Marocaine des Technologies de l'Information" />
+      <div class="meta">
+        Commission sectorielle<br />
+        <strong>Formation &amp; Talent Tech</strong> · Mandat 2026–2028
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky nav -->
+  <nav class="sticky-nav" aria-label="Navigation principale">
+    <div class="nav-row">
+      <a href="#contexte">Contexte</a>
+      <a href="#mission">Mission</a>
+      <a href="#vision">Vision 2028</a>
+      <a href="#axes">Axes</a>
+      <a href="#annonces">Annonces</a>
+      <a href="#evenements">Événements</a>
+      <a href="#equipe">Équipe</a>
+      <a href="#ressources">Ressources</a>
+      <a href="#rejoindre" class="cta-link">Rejoindre →</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero" data-screen-label="Hero">
+    <div class="wrap">
+      <div class="eyebrow">Commission sectorielle · APEBI</div>
+      <h1>Commission Formation &amp; Talent Tech</h1>
+      <p class="lede">Faire du capital humain marocain le premier avantage compétitif du secteur technologique national — en alignant durablement la formation sur les besoins réels des entreprises.</p>
+      <span class="tagline">Du talent formé, certifié, employable — à horizon 2028</span>
+    </div>
+  </div>
+
+  <!-- 01 Contexte -->
+  <section id="contexte" data-screen-label="Contexte">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">01</div>
+        <div>
+          <div class="bar"></div>
+          <h2>Contexte &amp; enjeux</h2>
+        </div>
+      </div>
+      <p class="sec-intro">Les métiers technologiques se transforment plus vite que les parcours qui y mènent. Au Maroc, la filière tech fait face à une tension croissante sur les compétences — IA, cybersécurité, data, cloud — que trois fractures structurelles viennent aggraver.</p>
+      <div class="grid g-3">
+        <div class="card">
+          <div class="idx">FRACTURE 01</div>
+          <h3>Inadéquation formation / emploi</h3>
+          <p>Des profils souvent théoriques face à des besoins opérationnels immédiats. L'écart entre diplômes et compétences réellement attendues par les entreprises se creuse.</p>
+        </div>
+        <div class="card">
+          <div class="idx">FRACTURE 02</div>
+          <h3>Reconversion non structurée</h3>
+          <p>Aucune filière lisible pour les profils hybrides — commercial vers SalesTech, comptable vers Data — alors que ce vivier est essentiel pour répondre à la demande.</p>
+        </div>
+        <div class="card">
+          <div class="idx">FRACTURE 03</div>
+          <h3>Offre dispersée</h3>
+          <p>L'offre de formation existe, mais reste fragmentée, peu coordonnée et insuffisamment orientée vers l'employabilité réelle au sein de l'écosystème APEBI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Mission -->
+  <section id="mission" class="alt" data-screen-label="Mission">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">02</div>
+        <div>
+          <div class="bar"></div>
+          <h2>Notre mission</h2>
+        </div>
+      </div>
+      <div class="mission-quote">
+        <p>Transformer le capital humain marocain en avantage compétitif national pour les entreprises membres de l'APEBI.</p>
+        <p class="sub">Pas une commission formation de plus — un levier d'impact mesurable sur le marché du travail tech, au service de la compétitivité de la filière.</p>
+      </div>
+      <ul class="checklist">
+        <li>Fédérer les acteurs de la formation, de l'emploi et de l'entreprise.</li>
+        <li>Identifier les besoins réels en compétences du secteur.</li>
+        <li>Contribuer à l'amélioration des parcours de formation.</li>
+        <li>Renforcer l'employabilité et l'insertion des talents.</li>
+        <li>Accompagner la montée en compétences (upskilling &amp; reskilling).</li>
+        <li>Soutenir la compétitivité et la souveraineté numérique nationale.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 03 Vision -->
+  <section id="vision" data-screen-label="Vision 2028">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">03</div>
+        <div>
+          <div class="bar"></div>
+          <h2>Vision 2028 &amp; ambitions</h2>
+        </div>
+      </div>
+      <div class="vision">
+        <div class="v-label">Vision à horizon 2028</div>
+        <p class="v-quote">« Faire du Maroc un vivier reconnu de talents tech — formés, certifiés, employables — à horizon 2028. »</p>
+        <div class="ambitions">
+          <div>
+            <div class="amb-n">01</div>
+            <p>Réduire le gap compétences / marché en reliant la formation aux besoins réels des entreprises APEBI.</p>
+          </div>
+          <div>
+            <div class="amb-n">02</div>
+            <p>Structurer les parcours de reconversion vers les métiers du secteur technologique.</p>
+          </div>
+          <div>
+            <div class="amb-n">03</div>
+            <p>Positionner l'APEBI comme acteur de référence de la politique nationale de formation tech.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Axes -->
+  <section id="axes" class="alt" data-screen-label="Axes stratégiques">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">04</div>
+        <div>
+          <div class="bar"></div>
+          <h2>Axes stratégiques</h2>
+        </div>
+      </div>
+      <p class="sec-intro">Quatre axes structurent l'action de la commission, chacun porté par un sous-groupe de travail autonome et associé à un livrable phare.</p>
+      <div class="grid g-2">
+        <div class="axe">
+          <div class="tab">A</div>
+          <div class="body">
+            <h3>Observatoire des Talents</h3>
+            <p>Mesurer, objectiver et anticiper les besoins en compétences tech du marché marocain.</p>
+            <div class="deliv">
+              <span class="chip">Baromètre Talents Tech Maroc (annuel)</span>
+              <span class="chip hz">Horizon M9</span>
+            </div>
+          </div>
+        </div>
+        <div class="axe">
+          <div class="tab">B</div>
+          <div class="body">
+            <h3>Label APEBI Tech Talent</h3>
+            <p>Distinguer les organismes de formation alignés sur les exigences d'employabilité du secteur.</p>
+            <div class="deliv">
+              <span class="chip">Premiers labels délivrés</span>
+              <span class="chip hz">Horizon M10–M12</span>
+            </div>
+          </div>
+        </div>
+        <div class="axe">
+          <div class="tab">C</div>
+          <div class="body">
+            <h3>Tech Talent Bridge</h3>
+            <p>Connecter talents formés et entreprises qui recrutent via stages, alternance et insertion.</p>
+            <div class="deliv">
+              <span class="chip">500 profils mis en relation sur 2 ans</span>
+              <span class="chip hz">Horizon M24</span>
+            </div>
+          </div>
+        </div>
+        <div class="axe">
+          <div class="tab">D</div>
+          <div class="body">
+            <h3>Plaidoyer &amp; Influence</h3>
+            <p>Porter la voix de la filière sur la politique de formation et les compétences numériques.</p>
+            <div class="deliv">
+              <span class="chip">EdTech &amp; Talents Summit + prises de position</span>
+              <span class="chip hz">Horizon M12–M15</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="priority-note">
+        <strong>Priorité Année 1 :</strong> concentration sur les axes A (Observatoire) et B (Label) — fondations de crédibilité — avant le déploiement des axes C et D en Année 2.
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Actions -->
+  <section id="actions" data-screen-label="Premières actions">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">05</div>
+        <div>
+          <div class="bar"></div>
+          <h2>Premières actions — 90 jours</h2>
+        </div>
+      </div>
+      <p class="sec-intro">Des actions concrètes, exécutables sans délai, pour amorcer la dynamique et produire des résultats tangibles dès le démarrage de la commission.</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-when">J+7</div>
+          <div>
+            <h3>Constituer et annoncer l'équipe de la commission</h3>
+            <p>Recrutement des membres actifs et formalisation des sous-groupes de travail par axe.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">J+14</div>
+          <div>
+            <h3>Lancer le sondage « Besoins en compétences »</h3>
+            <p>Recueil structuré auprès des entreprises membres APEBI pour objectiver la demande réelle.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">J+30</div>
+          <div>
+            <h3>Cartographier les formations tech au Maroc</h3>
+            <p>Référentiel des écoles, bootcamps et centres de formation — base du futur Label APEBI Tech Talent.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">J+60</div>
+          <div>
+            <h3>Organiser la 1ʳᵉ table ronde DRH</h3>
+            <p>Concertation avec 10 à 15 DRH membres APEBI sur les tensions de recrutement et les priorités.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">M9–M12</div>
+          <div>
+            <h3>Publier le Baromètre &amp; délivrer les premiers labels</h3>
+            <p>Premiers livrables phares de la commission, prélude au plaidoyer et aux prises de position publiques.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Annonces -->
+  <section id="annonces" class="alt" data-screen-label="Annonces">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">06</div>
+        <div>
+          <div class="bar"></div>
+          <h2>Annonces &amp; actualités</h2>
+        </div>
+      </div>
+      <p class="sec-intro">L'actualité de la commission — lancements, recrutements, publications et prises de position.</p>
+      <div class="grid g-3">
+        <div class="card annonce-card">
+          <span class="a-tag">Lancement</span>
+          <div class="a-date">Juin 2026</div>
+          <h3>La commission Formation &amp; Talent Tech est lancée</h3>
+          <p>La commission sectorielle dédiée au capital humain tech démarre ses travaux pour le mandat 2026–2028, sous l'égide de l'APEBI.</p>
+        </div>
+        <div class="card annonce-card">
+          <span class="a-tag">Recrutement</span>
+          <div class="a-date">Juin 2026</div>
+          <h3>Appel à candidatures — membres actifs</h3>
+          <p>La commission recrute 12 à 15 membres actifs : responsables d'axe, représentants entreprises, formation et étudiants. Voir la section Équipe ci-dessous.</p>
+        </div>
+        <div class="card annonce-card">
+          <span class="a-tag">Consultation</span>
+          <div class="a-date">À venir · J+14</div>
+          <h3>Sondage « Besoins en compétences »</h3>
+          <p>Un recueil structuré auprès des entreprises membres APEBI pour objectiver la demande réelle en compétences tech. Diffusion prochaine.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 Événements -->
+  <section id="evenements" data-screen-label="Événements">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">07</div>
+        <div>
+          <div class="bar"></div>
+          <h2>Événements à venir</h2>
+        </div>
+      </div>
+      <p class="sec-intro">Les prochains rendez-vous de la commission — réunions, tables rondes et concertations.</p>
+      <div class="grid g-2">
+        <div class="card event-card">
+          <div class="e-date"><div class="d">S2</div><div class="m">2026</div></div>
+          <div>
+            <h3>1ʳᵉ réunion plénière de la commission</h3>
+            <p>Constitution officielle de l'équipe, validation des axes de travail et lancement des sous-groupes.</p>
+            <div class="e-meta">Date à confirmer · Format hybride</div>
+            <a class="e-link" href="#rejoindre">S'inscrire →</a>
+          </div>
+        </div>
+        <div class="card event-card">
+          <div class="e-date"><div class="d">J+60</div><div class="m">2026</div></div>
+          <div>
+            <h3>Table ronde DRH — tensions de recrutement tech</h3>
+            <p>Concertation avec 10 à 15 DRH membres APEBI sur les priorités de compétences et les difficultés de recrutement.</p>
+            <div class="e-meta">Sur invitation · Casablanca</div>
+            <a class="e-link" href="#rejoindre">Manifester mon intérêt →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 Parties prenantes -->
+  <section class="alt" data-screen-label="Parties prenantes">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">08</div>
+        <div>
+          <div class="bar"></div>
+          <h2>Parties prenantes</h2>
+        </div>
+      </div>
+      <p class="sec-intro">La commission fédère l'ensemble des acteurs de la chaîne « formation → emploi → entreprise », autour d'une logique de coordination et de valeur ajoutée sectorielle.</p>
+      <div class="stake">
+        <div class="col">
+          <h3>Entreprises</h3>
+          <ul>
+            <li>Entreprises tech &amp; éditeurs</li>
+            <li>Startups &amp; PME numériques</li>
+            <li>Grands groupes utilisateurs de technologies</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Formation</h3>
+          <ul>
+            <li>Universités &amp; écoles d'ingénieurs</li>
+            <li>OFPPT &amp; centres de formation</li>
+            <li>Bootcamps &amp; organismes privés</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Institutions &amp; talents</h3>
+          <ul>
+            <li>Ministères &amp; institutions publiques</li>
+            <li>Associations professionnelles</li>
+            <li>Étudiants, diplômés &amp; profils en reconversion</li>
+          </ul>
+        </div>
+      </div>
+      <div class="partners">
+        <div class="lbl">Partenaires institutionnels cibles</div>
+        <div class="pills">
+          <span>ANAPEC</span>
+          <span>AUSIM</span>
+          <span>OFPPT</span>
+          <span>HCP</span>
+          <span>CGEM</span>
+          <span>ADD</span>
+          <span>Min. Enseignement Supérieur</span>
+          <span>Min. Formation Professionnelle</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 Impact -->
+  <section class="impact" data-screen-label="Impact attendu">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">09</div>
+        <div>
+          <div class="bar"></div>
+          <h2>Impact attendu</h2>
+        </div>
+      </div>
+      <div class="kpis">
+        <div class="kpi">
+          <div class="num">10+</div>
+          <div class="lab">organismes de formation labellisés</div>
+        </div>
+        <div class="kpi">
+          <div class="num">500+</div>
+          <div class="lab">profils mis en relation avec les entreprises</div>
+        </div>
+        <div class="kpi">
+          <div class="num">30+</div>
+          <div class="lab">entreprises dans le Talent Pool APEBI</div>
+        </div>
+        <div class="kpi">
+          <div class="num">1</div>
+          <div class="lab">Baromètre Talents Tech publié chaque année</div>
+        </div>
+      </div>
+      <ul class="impact-list">
+        <li>Une meilleure adéquation entre formation et emploi.</li>
+        <li>Une disponibilité accrue de talents qualifiés et certifiés.</li>
+        <li>Une insertion professionnelle renforcée des jeunes diplômés.</li>
+        <li>Une compétitivité accrue des entreprises de la filière.</li>
+        <li>La structuration d'un vivier national de compétences tech.</li>
+        <li>Une contribution à la souveraineté et à la transformation numériques.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 08 Gouvernance -->
+  <section data-screen-label="Gouvernance">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">10</div>
+        <div>
+          <div class="bar"></div>
+          <h2>Gouvernance &amp; fonctionnement</h2>
+        </div>
+      </div>
+      <div class="gov">
+        <div class="facts">
+          <div class="fact"><span class="k">Membres actifs (cible)</span><span class="v">12 à 15</span></div>
+          <div class="fact"><span class="k">Sous-groupes de travail</span><span class="v">4 — un par axe</span></div>
+          <div class="fact"><span class="k">Réunion plénière</span><span class="v">Mensuelle · 90 min</span></div>
+          <div class="fact"><span class="k">Reporting présidence</span><span class="v">Trimestriel</span></div>
+          <div class="fact"><span class="k">Mandat</span><span class="v">2026 – 2028</span></div>
+        </div>
+        <div class="principles">
+          <h3>Une commission orientée résultats</h3>
+          <ul>
+            <li>Une approche collaborative réunissant entreprises, formation et institutions.</li>
+            <li>Une charte d'engagement membre — pour des contributeurs actifs, pas passifs.</li>
+            <li>Une production régulière de recommandations, livrables et plans d'action.</li>
+            <li>Pas de réunion sans compte-rendu d'actions : la discipline d'exécution avant tout.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 Équipe / Profils recherchés -->
+  <section id="equipe" class="alt" data-screen-label="Équipe & profils recherchés">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">11</div>
+        <div>
+          <div class="bar"></div>
+          <h2>L'équipe &amp; les profils recherchés</h2>
+        </div>
+      </div>
+      <p class="sec-intro">La commission recrute ses membres actifs. Chaque rôle est une opportunité de contribuer concrètement à la structuration du talent tech marocain. Reconnaissez-vous un de ces profils ? Rejoignez-nous.</p>
+      <div class="grid g-3">
+        <div class="card profil-card confirmed">
+          <span class="p-status taken">Confirmé</span>
+          <h3>Oualid Mazouzi</h3>
+          <p>Vice-Président de la commission</p>
+          <p class="p-profile">DBM Maroc / ACCENT · UpMySkills — architecture d'écosystème tech</p>
+        </div>
+        <div class="card profil-card">
+          <span class="p-status open">Poste ouvert</span>
+          <h3>Responsable Observatoire</h3>
+          <p>Pilote le Baromètre Talents Tech Maroc et la collecte de données marché.</p>
+          <p class="p-profile">Profil : Data / RH senior</p>
+        </div>
+        <div class="card profil-card">
+          <span class="p-status open">Poste ouvert</span>
+          <h3>Responsable Label Qualité</h3>
+          <p>Conçoit et déploie le Label APEBI Tech Talent auprès des organismes de formation.</p>
+          <p class="p-profile">Profil : Formation + pédagogie</p>
+        </div>
+        <div class="card profil-card">
+          <span class="p-status open">Poste ouvert</span>
+          <h3>Responsable Employabilité</h3>
+          <p>Anime le Tech Talent Bridge — mise en relation talents ↔ entreprises qui recrutent.</p>
+          <p class="p-profile">Profil : DRH grands groupes IT</p>
+        </div>
+        <div class="card profil-card">
+          <span class="p-status open">Poste ouvert</span>
+          <h3>Responsable Plaidoyer</h3>
+          <p>Porte la voix de la filière sur la politique de formation et les compétences numériques.</p>
+          <p class="p-profile">Profil : Expert politique publique</p>
+        </div>
+        <div class="card profil-card">
+          <span class="p-status open">9 à 12 postes ouverts</span>
+          <h3>Membres représentants</h3>
+          <p>Représentants entreprises (4-5), organismes de formation (2-3) et associations étudiantes tech (1-2).</p>
+          <p class="p-profile">Profil : DRH, directeurs tech, directeurs d'écoles/bootcamps, étudiants</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 Ressources -->
+  <section id="ressources" data-screen-label="Ressources">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num">12</div>
+        <div>
+          <div class="bar"></div>
+          <h2>Ressources &amp; documents</h2>
+        </div>
+      </div>
+      <p class="sec-intro">Les documents officiels de la commission — à consulter, télécharger et partager librement.</p>
+      <div class="grid g-2">
+        <div class="card res-card">
+          <div class="r-icon">PDF</div>
+          <div>
+            <h3>Présentation de la commission</h3>
+            <p>Le document institutionnel complet : contexte, mission, axes stratégiques et gouvernance.</p>
+            <a class="r-dl" href="docs/presentation-commission-v1.pdf" download>Télécharger</a><span class="r-size">PDF · 88 Ko</span>
+          </div>
+        </div>
+        <div class="card res-card">
+          <div class="r-icon">PDF</div>
+          <div>
+            <h3>Dossier de présentation</h3>
+            <p>Le dossier synthétique à partager avec les candidats membres et les partenaires.</p>
+            <a class="r-dl" href="docs/dossier-presentation-v1.pdf" download>Télécharger</a><span class="r-size">PDF · 7 Ko</span>
+          </div>
+        </div>
+        <div class="card res-card">
+          <div class="r-icon">DOCX</div>
+          <div>
+            <h3>Livre blanc</h3>
+            <p>L'analyse complète des trois fractures et la stratégie détaillée de la commission.</p>
+            <a class="r-dl" href="docs/livre-blanc-v1.docx" download>Télécharger</a><span class="r-size">DOCX · 16 Ko</span>
+          </div>
+        </div>
+        <div class="card res-card">
+          <div class="r-icon">DOCX</div>
+          <div>
+            <h3>Charte d'engagement membre</h3>
+            <p>Les 7 engagements du membre actif — à lire avant toute candidature.</p>
+            <a class="r-dl" href="docs/charte-engagement-membre-v1.docx" download>Télécharger</a><span class="r-size">DOCX · 40 Ko</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="rejoindre" class="cta" data-screen-label="Appel à l'action">
+    <div class="wrap">
+      <h2>Rejoignez la dynamique du talent tech marocain</h2>
+      <p>Entreprises, établissements de formation, institutions et partenaires : la commission a besoin de votre expertise et de votre engagement pour transformer l'adéquation formation-emploi en avantage compétitif national. Contribuez, soutenez, fédérez.</p>
+      <div class="actions">
+        <a class="btn solid" id="btnEnroll" href="#">Devenir membre de la commission</a>
+        <a class="btn ghost" id="btnPartner" href="#">Nouer un partenariat</a>
+      </div>
+      <p class="print-contact">Contact : o.mazouzi.pro@gmail.com · apebi.org.ma</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <div class="name">Commission Formation &amp; Talent Tech</div>
+          <div class="fed">Une commission sectorielle de l'APEBI — Fédération Marocaine des Technologies de l'Information, des Télécommunications et de l'Offshoring.</div>
+        </div>
+        <div class="foot-sign">
+          <div class="vp-label">Vice-Président de la commission</div>
+          <div class="vp-name">Oualid Mazouzi</div>
+          <div class="vp-meta">Mandat 2026 – 2028</div>
+        </div>
+      </div>
+      <div class="foot-connect">
+        <span class="c-lbl">Connecter</span>
+        <a id="linkEmail" href="#">✉ Email</a>
+        <a id="linkWhatsApp" href="#" style="display:none">WhatsApp</a>
+        <a id="linkLinkedIn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a id="btnShare" href="#">Partager cette page</a>
+      </div>
+      <div class="foot-bar">
+        <div>© 2026 APEBI · Commission Formation &amp; Talent Tech · Document institutionnel</div>
+        <div><a href="https://apebi.org.ma">apebi.org.ma</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky CTA bar -->
+  <div class="sticky-cta-bar" id="stickyCta">
+    <p>Commission Formation &amp; Talent Tech — rejoignez le mouvement</p>
+    <a href="#rejoindre">Rejoindre →</a>
+  </div>
+
+  <script>
+    // ----- Liens dynamiques depuis CONFIG -----
+    (function () {
+      const mailEnroll = "mailto:" + CONFIG.EMAIL_VP
+        + "?subject=" + encodeURIComponent("Candidature — Commission Formation & Talent Tech APEBI")
+        + "&body=" + encodeURIComponent("Bonjour,\n\nJe souhaite rejoindre la Commission Formation & Talent Tech.\n\nNom :\nEntreprise / Organisation :\nFonction :\nAxe d'intérêt (A. Observatoire / B. Label / C. Talent Bridge / D. Plaidoyer) :\nMotivation :\n");
+      const mailPartner = "mailto:" + CONFIG.EMAIL_VP
+        + "?subject=" + encodeURIComponent("Partenariat — Commission Formation & Talent Tech APEBI")
+        + "&body=" + encodeURIComponent("Bonjour,\n\nNous souhaitons explorer un partenariat avec la commission.\n\nOrganisation :\nContact :\nNature du partenariat envisagé :\n");
+
+      // Enroll : Tally si configuré, sinon email structuré
+      const btnEnroll = document.getElementById("btnEnroll");
+      if (CONFIG.TALLY_FORM_ID) {
+        btnEnroll.href = "https://tally.so/r/" + CONFIG.TALLY_FORM_ID;
+        btnEnroll.target = "_blank"; btnEnroll.rel = "noopener";
+      } else {
+        btnEnroll.href = mailEnroll;
+      }
+      document.getElementById("btnPartner").href = mailPartner;
+
+      // Footer connect
+      document.getElementById("linkEmail").href = "mailto:" + CONFIG.EMAIL_VP;
+      document.getElementById("linkLinkedIn").href = CONFIG.LINKEDIN_VP;
+      if (CONFIG.WHATSAPP_URL) {
+        const wa = document.getElementById("linkWhatsApp");
+        wa.href = CONFIG.WHATSAPP_URL; wa.style.display = "";
+        wa.target = "_blank"; wa.rel = "noopener";
+      }
+
+      // Partage : Web Share API (mobile) + fallback copie de lien
+      document.getElementById("btnShare").addEventListener("click", function (e) {
+        e.preventDefault();
+        const shareData = {
+          title: "Commission Formation & Talent Tech — APEBI",
+          text: "Découvrez la commission sectorielle Formation & Talent Tech de l'APEBI",
+          url: window.location.href
+        };
+        if (navigator.share) {
+          navigator.share(shareData).catch(function () {});
+        } else {
+          navigator.clipboard.writeText(window.location.href).then(function () {
+            const btn = document.getElementById("btnShare");
+            const old = btn.textContent;
+            btn.textContent = "Lien copié ✓";
+            setTimeout(function () { btn.textContent = old; }, 2000);
+          });
+        }
+      });
+    })();
+
+    // ----- Barre de progression scroll -----
+    (function () {
+      const bar = document.getElementById("scrollProgress");
+      window.addEventListener("scroll", function () {
+        const h = document.documentElement;
+        const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        bar.style.width = pct + "%";
+      }, { passive: true });
+    })();
+
+    // ----- Sticky CTA bar : visible après 400px, masquée quand #rejoindre est à l'écran -----
+    (function () {
+      const stickyBar = document.getElementById("stickyCta");
+      const ctaSection = document.getElementById("rejoindre");
+      let ctaVisible = false;
+      new IntersectionObserver(function (entries) {
+        setTimeout(function () {
+          ctaVisible = entries[0].isIntersecting;
+          update();
+        }, 100);
+      }, { threshold: 0.1 }).observe(ctaSection);
+      function update() {
+        const past = window.scrollY > 400;
+        stickyBar.classList.toggle("visible", past && !ctaVisible);
+      }
+      window.addEventListener("scroll", update, { passive: true });
+    })();
+  </script>
+
+</body>
+</html>
