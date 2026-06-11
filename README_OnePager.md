@@ -12,9 +12,11 @@
 | `index.html` | Landing page complète (standalone — ouvrir dans un navigateur) |
 | `docs/presentation-commission-v1.pdf` | Présentation institutionnelle (téléchargeable depuis la page) |
 | `docs/dossier-presentation-v2.pdf` | Dossier de présentation synthétique (v2 : mise en page corrigée) |
-| `docs/livre-blanc-v1.pdf` | Livre blanc complet |
 | `docs/charte-engagement-membre-v1.pdf` | Charte d'engagement membre |
-| `docs-src/*.html` | Sources HTML des PDF générés (dossier de présentation, livre blanc) |
+| `docs-src/*.html` | Sources HTML des PDF générés (dossier de présentation) |
+
+> Le Livre blanc a été retiré du site (2026-06-11) — document interne destiné au Binôme.
+> PDF et source conservés dans `../02_Livrables_Présidence/`.
 
 ⚠️ Le dossier `docs/` doit rester à côté du HTML (liens relatifs).
 ⚠️ Tous les documents téléchargeables sont au format PDF (décision 2026-06-11 — plus de DOCX).
