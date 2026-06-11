@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Livre blanc — Commission C5 Éducation &amp; Talent Tech APEBI</title>
+<style>
+  /* ============================================================
+     Source du PDF docs/livre-blanc-vN.pdf
+     Régénérer avec :
+     chrome --headless --print-to-pdf="docs/livre-blanc-vN.pdf"
+            --no-pdf-header-footer docs-src/livre-blanc.html
+     ============================================================ */
+  :root{
+    --cyan:#00AFD2; --cyan-d:#0096b4; --ink:#202020; --navy:#3A4652;
+    --dark:#212121; --muted:#545454; --divider:#EAEAEA; --soft:#E6F7FB;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  @page{size:A4;margin:18mm 17mm;}
+  body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);font-size:10.5pt;line-height:1.55;}
+
+  .cover{background:var(--dark);color:#fff;text-align:center;padding:34px 24px 28px;margin-bottom:18px;}
+  .cover .over{color:var(--cyan);font-size:12pt;letter-spacing:2px;margin-bottom:8px;}
+  .cover h1{font-size:24pt;letter-spacing:.5px;margin-bottom:8px;}
+  .cover .sub{font-size:11pt;font-style:italic;color:#cfd6db;}
+
+  table.meta{width:100%;border-collapse:collapse;margin:0 0 16px;}
+  table.meta td{border:1px solid var(--divider);padding:6px 12px;font-size:9.5pt;}
+  table.meta td:first-child{background:#F6F8F9;font-weight:bold;width:32%;}
+
+  h2{background:var(--dark);color:#fff;font-size:12pt;padding:7px 14px;margin:20px 0 10px;page-break-after:avoid;}
+  h3{color:var(--cyan-d);font-size:11pt;margin:14px 0 6px;page-break-after:avoid;}
+  p{margin:0 0 8px;}
+  p.lead{font-weight:bold;font-style:italic;color:var(--navy);}
+  ul{margin:0 0 10px 20px;}
+  li{margin-bottom:4px;}
+
+  table.data{width:100%;border-collapse:collapse;margin:6px 0 12px;page-break-inside:avoid;}
+  table.data th{background:var(--cyan);color:#fff;text-align:left;font-size:9.5pt;padding:6px 10px;}
+  table.data td{font-size:9.5pt;padding:6px 10px;border-bottom:1px solid var(--divider);vertical-align:top;}
+  table.data tr:nth-child(odd) td{background:#F6F8F9;}
+
+  .sig{margin-top:22px;border-top:2px solid var(--cyan);padding-top:10px;font-size:10pt;}
+  .sig b{display:block;font-size:11pt;}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="over">COMMISSION C5</div>
+  <h1>Éducation &amp; Talent Tech</h1>
+  <div class="sub">Manifeste de Mandat — 2026-2028</div>
+</div>
+
+<table class="meta">
+  <tr><td>Présenté par</td><td>Oualid Mazouzi — VP Commission C5</td></tr>
+  <tr><td>À l'attention de</td><td>Binôme Président / Vice-Présidente APEBI</td></tr>
+  <tr><td>Date</td><td>Juin 2026</td></tr>
+  <tr><td>Version</td><td>V1.0 — Document de travail pour validation</td></tr>
+</table>
+
+<h2>1. Pourquoi cette commission existe</h2>
+<p class="lead">Le Maroc forme. Mais pas assez. Pas assez vite. Pas pour les bons métiers.</p>
+<p>Le secteur tech marocain souffre d'un paradoxe structurel : des entreprises membres APEBI qui recrutent à l'international faute de profils locaux qualifiés, pendant que des milliers de diplômés peinent à trouver leur premier emploi IT.</p>
+<p>La commission C5 n'est pas une commission formation de plus. C'est le levier par lequel l'APEBI transforme le capital humain en avantage compétitif national.</p>
+<p><b>L'enjeu du mandat : passer de la réflexion à l'impact mesurable.</b></p>
+
+<h2>2. Vision du Mandat 2026-2028</h2>
+<p class="lead">Faire du Maroc un vivier reconnu de talents tech — formés, certifiés, employables — à horizon 2028.</p>
+<p>Trois ambitions concrètes structurent ce mandat :</p>
+<ul>
+  <li><b>Réduire le gap compétences/marché</b> : aligner la formation sur les besoins réels des entreprises membres APEBI</li>
+  <li><b>Structurer les parcours de reconversion</b> : créer des voies d'entrée rapides dans le secteur tech</li>
+  <li><b>Positionner l'APEBI comme acteur de référence</b> sur la politique de formation tech au Maroc</li>
+</ul>
+
+<h2>3. Diagnostic — Les 3 Fractures</h2>
+<h3>Fracture 1 — L'inadéquation formation/emploi</h3>
+<p>Les cursus académiques produisent des profils théoriques. Les entreprises veulent des profils opérationnels. Le gap se creuse chaque année sur les métiers IA, cybersécurité, data et cloud.</p>
+<h3>Fracture 2 — L'absence de parcours de reconversion structurés</h3>
+<p>Pas de filière claire pour un commercial qui veut devenir Sales Tech, un comptable qui veut faire de la data, un juriste qui veut aller en LegalTech. Des profils hybrides à haut potentiel laissés sur le bord de la route.</p>
+<h3>Fracture 3 — La dispersion de l'offre</h3>
+<p>Bootcamps, certifications, formations institutionnelles, OFPPT, universités privées : tout existe mais rien n'est coordonné, lisible, ni orienté vers l'emploi dans les entreprises membres APEBI.</p>
+
+<h2>4. Les 4 Axes Stratégiques</h2>
+<h3>AXE A — Cartographie &amp; Observatoire des Talents</h3>
+<p class="lead">On ne peut pas résoudre ce qu'on ne mesure pas.</p>
+<p>Créer le premier Observatoire des Talents Tech Maroc, porté par l'APEBI :</p>
+<ul>
+  <li>Enquête annuelle « Besoins en compétences » auprès des membres APEBI</li>
+  <li>Cartographie des métiers en tension vs profils disponibles</li>
+  <li>Baromètre Talents Tech Maroc : rapport annuel à forte valeur média</li>
+  <li>Identification des 10 métiers tech les plus sous-dotés en talents locaux</li>
+</ul>
+<p><b>Partenaires clés :</b> ANAPEC, AUSIM, universités techniques, HCP</p>
+
+<h3>AXE B — Label &amp; Référentiel de Qualité Formation</h3>
+<p class="lead">Pas de label, pas de lisibilité. Pas de lisibilité, pas de confiance.</p>
+<p>Créer le Label APEBI Tech Talent — référentiel de qualité pour les organismes de formation :</p>
+<ul>
+  <li>Définir les critères du label (taux d'insertion, contenu, partenariats, évaluation par compétences)</li>
+  <li>Appel à candidatures auprès des organismes membres et partenaires</li>
+  <li>Premiers labels délivrés avant la fin de l'année 1</li>
+  <li>Annuaire public des formations labellisées sur apebi.org.ma</li>
+</ul>
+<p><b>Impact attendu :</b> les entreprises membres recrutent en priorité sur les formations labellisées.</p>
+
+<h3>AXE C — Programmes d'Employabilité &amp; de Reconversion</h3>
+<p class="lead">Former, c'est bien. Placer, c'est mieux.</p>
+<p>Créer des passerelles concrètes entre formation et emploi :</p>
+<ul>
+  <li>Programme « Tech Talent Bridge » : cohortes de 20-30 profils en reconversion, 3-6 mois, entretiens garantis chez les membres APEBI</li>
+  <li>Talent Pool APEBI : base de CVs qualifiés accessible aux membres recruteurs</li>
+  <li>Semaines d'Immersion : parcours d'1 semaine en entreprise pour étudiants en fin de formation</li>
+  <li>Partenariats avec plateformes de micro-certifications (LinkedIn Learning, Coursera, Google Career Certificates)</li>
+</ul>
+<p><b>KPI cible :</b> 500 profils formés et mis en relation avec les entreprises membres sur 2 ans</p>
+
+<h3>AXE D — Plaidoyer &amp; Influence Politique</h3>
+<p class="lead">La commission doit parler plus fort que ses membres.</p>
+<p>Positionner l'APEBI C5 comme interlocuteur privilégié du gouvernement sur la formation tech :</p>
+<ul>
+  <li>Prises de position écrites sur les projets de loi Formation Professionnelle / Enseignement Supérieur</li>
+  <li>Événement annuel « EdTech &amp; Talents Summit »</li>
+  <li>Représentation dans les instances nationales (CSE, OFPPT, commissions ministérielles)</li>
+  <li>Recommandations formelles à la présidence APEBI sur les politiques publiques de formation tech</li>
+</ul>
+<p><b>Partenaires cibles :</b> Ministère de l'Enseignement Supérieur, CGEM, ADD</p>
+
+<h2>5. Livrables &amp; Indicateurs de Succès</h2>
+<table class="data">
+  <tr><th>Indicateur</th><th>Cible 2 ans</th><th>Horizon</th></tr>
+  <tr><td>Membres actifs dans la commission</td><td>12 à 15</td><td>M6</td></tr>
+  <tr><td>Organismes de formation labellisés</td><td>10+</td><td>M24</td></tr>
+  <tr><td>Entreprises membres dans le Talent Pool</td><td>30+</td><td>M18</td></tr>
+  <tr><td>Profils mis en relation via Tech Talent Bridge</td><td>500+</td><td>M24</td></tr>
+  <tr><td>Éditions Baromètre Talents Tech publiées</td><td>2</td><td>M9 &amp; M21</td></tr>
+  <tr><td>EdTech &amp; Talents Summit organisés</td><td>2</td><td>M15 &amp; M27</td></tr>
+  <tr><td>Prises de position formelles soumises</td><td>3+</td><td>M24</td></tr>
+  <tr><td>Couverture média (articles, interviews)</td><td>20+</td><td>M24</td></tr>
+</table>
+
+<h2>6. Structure &amp; Gouvernance</h2>
+<p>12 à 15 membres actifs et engagés, bénévoles, représentatifs de l'écosystème. <b>Principe : qualité &gt; quantité.</b></p>
+<table class="data">
+  <tr><th>Rôle</th><th>Profil type</th><th>Mission</th></tr>
+  <tr><td>VP Commission</td><td>EdTech + Écosystème (Oualid Mazouzi)</td><td>Ancre stratégique</td></tr>
+  <tr><td>Resp. Observatoire</td><td>Data / RH Senior</td><td>Enquêtes &amp; rapports</td></tr>
+  <tr><td>Resp. Label Qualité</td><td>Formation + Pédagogie</td><td>Critères &amp; audit</td></tr>
+  <tr><td>Resp. Employabilité</td><td>DRH grands groupes IT</td><td>Pont vers l'emploi</td></tr>
+  <tr><td>Resp. Plaidoyer</td><td>Expert politique publique</td><td>Lobbying institutionnel</td></tr>
+  <tr><td>Représentants entreprises (4-5)</td><td>DRH ou Directeurs Tech</td><td>Ancrage terrain</td></tr>
+  <tr><td>Représentants formation (2-3)</td><td>Directeurs bootcamps/écoles</td><td>Regard offre</td></tr>
+  <tr><td>Représentants étudiants (1-2)</td><td>Associations étud. tech</td><td>Voix des apprenants</td></tr>
+</table>
+<h3>Fonctionnement</h3>
+<ul>
+  <li>Réunion plénière mensuelle (90 min max, agenda préparé)</li>
+  <li>4 sous-groupes de travail — un par axe — autonomes, compte-rendu mensuel</li>
+  <li>Reporting présidence APEBI : 1x/trimestre (note d'avancement + indicateurs)</li>
+  <li>Charte d'engagement membre : engagement écrit sur présence, livrables et sous-groupe</li>
+</ul>
+
+<h2>7. Calendrier — Jalons Clés</h2>
+<h3>Phase 1 — Fondation (Mois 1 à 6)</h3>
+<ul>
+  <li>Constituer et annoncer l'équipe [M1-M2]</li>
+  <li>Séminaire fondateur : valider la vision et les 4 axes [M2]</li>
+  <li>Lancer l'enquête « Besoins en compétences » [M2-M3]</li>
+  <li>Définir les critères du Label APEBI Tech Talent [M3-M4]</li>
+  <li>Présenter la feuille de route à la présidence APEBI [M3]</li>
+  <li>Signer les premiers partenariats institutionnels (ANAPEC, OFPPT) [M4-M6]</li>
+</ul>
+<h3>Phase 2 — Déploiement (Mois 7 à 18)</h3>
+<ul>
+  <li>Publier le 1er Baromètre Talents Tech Maroc [M9]</li>
+  <li>Délivrer les premiers Labels APEBI Tech Talent [M10-M12]</li>
+  <li>Lancer Tech Talent Bridge — 1ère cohorte [M12]</li>
+  <li>Organiser le 1er EdTech &amp; Talents Summit [M12-M15]</li>
+  <li>Soumettre les 1ères recommandations politiques [M15]</li>
+</ul>
+<h3>Phase 3 — Consolidation &amp; Impact (Mois 19 à 24)</h3>
+<ul>
+  <li>2ème édition Baromètre Talents Tech Maroc [M21]</li>
+  <li>Bilan mi-mandat : ajustement des priorités [M18-M20]</li>
+  <li>2ème cohorte Tech Talent Bridge [M20]</li>
+  <li>Rapport final de mandat + recommandations pour le mandat suivant [M24]</li>
+</ul>
+
+<h2>8. Ce que nous demandons au Binôme</h2>
+<p>Cinq points concrets pour lesquels nous sollicitons l'arbitrage et l'endorsement du Binôme.</p>
+<h3>A — Validation des 4 axes stratégiques</h3>
+<p>Validation formelle des 4 axes pour permettre le lancement des sous-groupes, la communication publique du mandat, et le recrutement des membres sur une base claire.</p>
+<h3>B — Clarification du budget alloué à C5</h3>
+<p>La commission fonctionne sur base bénévole. Certaines actions nécessitent cependant un minimum de moyens (Baromètre, Summit, communication).</p>
+<ul>
+  <li>Quel budget annuel est alloué à C5 ?</li>
+  <li>Quelle est la procédure pour engager des dépenses (prestataires, salle, impression) ?</li>
+  <li>Existe-t-il des partenaires pouvant co-financer certaines actions (CGEM, ministères) ?</li>
+</ul>
+<h3>C — Appui humain : un support APEBI pour la coordination ?</h3>
+<p>La coordination de la commission (préparation des réunions, suivi des actions, communication) représente une charge significative. Est-il possible d'allouer un support administratif APEBI à C5, même partiellement ?</p>
+<h3>D — Endorsement public du Binôme</h3>
+<p>Le lancement officiel de C5 par le Binôme (communiqué APEBI, publication LinkedIn, mention en assemblée) est un signal fort. Il attire les bons profils, crédibilise les actions auprès des partenaires institutionnels, et ancre C5 dans l'agenda visible de l'APEBI.</p>
+<h3>E — Arbitrage sur le périmètre et les synergies</h3>
+<ul>
+  <li>Comment C5 s'articule-t-elle avec les autres commissions sectorielles (réglementation des formations, RH) ?</li>
+  <li>Comment C5 s'intègre-t-elle dans la stratégie Maroc Digital 2030 ?</li>
+  <li>L'APEBI souhaite-t-elle un rôle de représentation C5 à l'international (Afrique, partenariats européens) ?</li>
+</ul>
+
+<h2>9. Quick Wins — Ce qu'on peut faire en 90 jours</h2>
+<ul>
+  <li>Constituer et annoncer l'équipe C5 (communiqué APEBI + LinkedIn)</li>
+  <li>Lancer le sondage « Besoins en compétences » (coût : zéro)</li>
+  <li>Cartographier les formations existantes au Maroc</li>
+  <li>Organiser une première table ronde avec 10-15 DRH membres APEBI</li>
+  <li>Publier une prise de position LinkedIn — VP Oualid Mazouzi</li>
+</ul>
+
+<h2>Conclusion</h2>
+<p>C5 n'est pas une commission de plus. C'est le pari que l'APEBI peut transformer le capital humain marocain en avantage compétitif national. <b>Ce pari est gagnable.</b></p>
+<p>Les 4 axes sont complémentaires et progressifs. L'Observatoire alimente le Label. Le Label crédibilise les parcours d'employabilité. Et l'ensemble nourrit le plaidoyer institutionnel.</p>
+<p>Ce document est soumis à la validation du Binôme. Nous sommes prêts à ajuster, aménager et challenger les axes en fonction des priorités de la présidence APEBI.</p>
+
+<div class="sig">
+  <b>Oualid Mazouzi</b>
+  VP Commission C5 — Éducation &amp; Talent Tech<br>
+  APEBI — Fédération Marocaine des Technologies de l'Information<br>
+  Juin 2026
+</div>
+
+</body>
+</html>

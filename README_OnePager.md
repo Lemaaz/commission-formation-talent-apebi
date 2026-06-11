@@ -11,11 +11,19 @@
 |---------|-------------|
 | `index.html` | Landing page complète (standalone — ouvrir dans un navigateur) |
 | `docs/presentation-commission-v1.pdf` | Présentation institutionnelle (téléchargeable depuis la page) |
-| `docs/dossier-presentation-v1.pdf` | Dossier de présentation synthétique |
-| `docs/livre-blanc-v1.docx` | Livre blanc complet |
-| `docs/charte-engagement-membre-v1.docx` | Charte d'engagement membre |
+| `docs/dossier-presentation-v2.pdf` | Dossier de présentation synthétique (v2 : mise en page corrigée) |
+| `docs/livre-blanc-v1.pdf` | Livre blanc complet |
+| `docs/charte-engagement-membre-v1.pdf` | Charte d'engagement membre |
+| `docs-src/*.html` | Sources HTML des PDF générés (dossier de présentation, livre blanc) |
 
 ⚠️ Le dossier `docs/` doit rester à côté du HTML (liens relatifs).
+⚠️ Tous les documents téléchargeables sont au format PDF (décision 2026-06-11 — plus de DOCX).
+
+**Régénérer un PDF depuis sa source HTML** (après modification dans `docs-src/`) :
+```powershell
+& "C:\Program Files\Google\Chrome\Application\chrome.exe" --headless --no-pdf-header-footer `
+  --print-to-pdf="docs/<nom>-vN.pdf" "docs-src/<nom>.html"
+```
 
 ---
 
